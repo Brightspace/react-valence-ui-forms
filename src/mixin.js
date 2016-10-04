@@ -3,6 +3,7 @@
 var classNames = require('classnames'),
 	messagePositions = require('./messagePositions'),
 	React = require('react'),
+	ReactDOM = require('react-dom'),
 	Emitter = require('react-frau-events'),
 	Bubble = require('./bubble'),
 	Q = require('q');
@@ -188,7 +189,7 @@ var ValidationMixin = {
 		if (!relatedComponent ||
 			!relatedComponent.isMounted() ||
 			!this.isMounted() ||
-			!this.isAncestor(relatedComponent.getDOMNode(), this.getDOMNode())) {
+			!this.isAncestor(ReactDOM.findDOMNode(relatedComponent), ReactDOM.findDOMNode(this))) {
 			return;
 		}
 

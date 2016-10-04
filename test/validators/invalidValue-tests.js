@@ -2,8 +2,7 @@
 
 jest.dontMock('../../src/validators/invalidValue');
 
-var React = require('react/addons'),
-	TestUtils = React.addons.TestUtils,
+var TestUtils = require('react-addons-test-utils'),
 	Validation = require('../../index');
 
 describe('invalidValue validator', function() {

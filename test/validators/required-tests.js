@@ -3,8 +3,7 @@
 jest.dontMock('../../src/validators/required');
 jest.dontMock('../../src/validators/whitespaceOptions');
 
-var React = require('react/addons'),
-	TestUtils = React.addons.TestUtils,
+var TestUtils = require('react-addons-test-utils'),
 	Validation = require('../../index');
 
 describe('required validator', function() {

@@ -2,6 +2,7 @@
 
 var objectAssign = require('object-assign'),
 	React = require('react'),
+	ReactDOM = require('react-dom'),
 	ValidationMixin = require('./mixin');
 
 var Input = React.createClass({
@@ -20,7 +21,7 @@ var Input = React.createClass({
 	},
 
 	getInput: function() {
-		return this.getDOMNode().querySelector('input');
+		return ReactDOM.findDOMNode(this).querySelector('input');
 	},
 
 	getValue: function() {

@@ -2,8 +2,9 @@
 
 jest.dontMock('../src/input');
 
-var React = require('react/addons'),
-	TestUtils = React.addons.TestUtils,
+var React = require('react'),
+	ReactDOM = require('react-dom'),
+	TestUtils = require('react-addons-test-utils'),
 	Validation = require('../index');
 
 describe('input', function() {
@@ -34,8 +35,9 @@ describe('input', function() {
 			var input = TestUtils.renderIntoDocument(
 				<Validation.Input type="text" required />
 			);
+			var inputNode = ReactDOM.findDOMNode(input);
 
-			expect(input.getDOMNode().firstChild.getAttribute('aria-required')).toBeTruthy();
+			expect(inputNode.firstChild.getAttribute('aria-required')).toBeTruthy();
 
 		});
 
@@ -44,8 +46,9 @@ describe('input', function() {
 			var input = TestUtils.renderIntoDocument(
 				<Validation.Input type="text" />
 			);
+			var inputNode = ReactDOM.findDOMNode(input);
 
-			expect(input.getDOMNode().firstChild.getAttribute('aria-required')).toBeNull();
+			expect(inputNode.firstChild.getAttribute('aria-required')).toBeNull();
 
 		});
 
@@ -54,11 +57,12 @@ describe('input', function() {
 			var input = TestUtils.renderIntoDocument(
 				<Validation.Input type="text" validators={getSynchronousValidator(false,'a message')} />
 			);
+			var inputNode = ReactDOM.findDOMNode(input);
 
 			return input.validate().then(function(result) {
 				expect(result.isValid).toBeFalsy();
 				expect(result.message).toBe('a message');
-				expect(input.getDOMNode().firstChild.getAttribute('aria-invalid')).toBeTruthy();
+				expect(inputNode.firstChild.getAttribute('aria-invalid')).toBeTruthy();
 			});
 
 		});
@@ -68,10 +72,11 @@ describe('input', function() {
 			var input = TestUtils.renderIntoDocument(
 				<Validation.Input type="text" validators={getSynchronousValidator(true)} />
 			);
+			var inputNode = ReactDOM.findDOMNode(input);
 
 			return input.validate().then(function(result) {
 				expect(result.isValid).toBeTruthy();
-				expect(input.getDOMNode().firstChild.getAttribute('aria-invalid')).toBeNull();
+				expect(inputNode.firstChild.getAttribute('aria-invalid')).toBeNull();
 			});
 
 		});

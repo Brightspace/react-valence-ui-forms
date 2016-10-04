@@ -4,8 +4,9 @@ jest.dontMock('../src/form');
 jest.dontMock('../src/input');
 jest.dontMock('q');
 
-var React = require('react/addons'),
-	TestUtils = React.addons.TestUtils,
+var React = require('react'),
+	ReactDOM = require('react-dom'),
+	TestUtils = require('react-addons-test-utils'),
 	Validation = require('../index'),
 	Q = require('q');
 
@@ -50,8 +51,9 @@ describe('form', function() {
 			var form = TestUtils.renderIntoDocument(
 				<Validation.Form />
 			);
+			var formNode = ReactDOM.findDOMNode(form);
 
-			expect(form.getDOMNode().hasAttribute('novalidate')).toBeTruthy();
+			expect(formNode.hasAttribute('novalidate')).toBeTruthy();
 
 		});
 
@@ -60,8 +62,9 @@ describe('form', function() {
 			var form = TestUtils.renderIntoDocument(
 				<Validation.Form>some fields</Validation.Form>
 			);
+			var formNode = ReactDOM.findDOMNode(form);
 
-			expect(form.getDOMNode().textContent).toBe('some fields');
+			expect(formNode.textContent).toBe('some fields');
 
 		});
 

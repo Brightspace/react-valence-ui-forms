@@ -2,6 +2,7 @@
 
 var objectAssign = require('object-assign'),
 	React = require('react'),
+	ReactDOM = require('react-dom'),
 	ValidationMixin = require('./mixin');
 
 var Textarea = React.createClass({
@@ -20,7 +21,7 @@ var Textarea = React.createClass({
 	},
 
 	getTextarea: function() {
-		return this.getDOMNode().querySelector('textarea');
+		return ReactDOM.findDOMNode(this).querySelector('textarea');
 	},
 
 	getValue: function() {

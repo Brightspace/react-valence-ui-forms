@@ -4,11 +4,12 @@ jest.dontMock('../src/bubble');
 
 describe('bubble', function() {
 
-	var React, TestUtils, Validation;
+	var React, ReactDOM, TestUtils, Validation;
 
 	beforeEach(function() {
-		React = require( 'react/addons' );
-		TestUtils = React.addons.TestUtils;
+		React = require('react');
+		ReactDOM = require('react-dom')
+		TestUtils = require('react-addons-test-utils');
 		Validation = require('../index');
 	});
 
@@ -18,8 +19,9 @@ describe('bubble', function() {
 		var bubble = TestUtils.renderIntoDocument(
 			<Validation.Bubble message="The bubble message."/>
 		);
+		var bubbleNode = ReactDOM.findDOMNode(bubble);
 
-		expect(bubble.getDOMNode().textContent).toBe('The bubble message.');
+		expect(bubbleNode.textContent).toBe('The bubble message.');
 
 	});
 
@@ -28,8 +30,9 @@ describe('bubble', function() {
 		var bubble = TestUtils.renderIntoDocument(
 			<Validation.Bubble message="The bubble message."/>
 		);
+		var bubbleNode = ReactDOM.findDOMNode(bubble);
 
-		expect(bubble.getDOMNode().className).toBe('field-bubble field-bubble-hidden');
+		expect(bubbleNode.className).toBe('field-bubble field-bubble-hidden');
 
 	});
 
@@ -38,10 +41,10 @@ describe('bubble', function() {
 		var bubble = TestUtils.renderIntoDocument(
 			<Validation.Bubble isVisible={true} message="The bubble message."/>
 		);
+		var bubbleNode = ReactDOM.findDOMNode(bubble);
 
-		expect(bubble.getDOMNode().className).toContain('field-bubble-show');
+		expect(bubbleNode.className).toContain('field-bubble-show');
 
 	});
 
 });
-
