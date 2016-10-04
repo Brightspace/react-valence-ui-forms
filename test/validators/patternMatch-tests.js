@@ -2,8 +2,7 @@
 
 jest.dontMock('../../src/validators/patternMatch');
 
-var React = require('react/addons'),
-	TestUtils = React.addons.TestUtils,
+var TestUtils = require('react-addons-test-utils'),
 	Validation = require('../../index');
 
 describe('patternMatch validator', function() {

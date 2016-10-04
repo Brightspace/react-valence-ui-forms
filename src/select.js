@@ -3,6 +3,7 @@
 var objectAssign = require('object-assign'),
 	messagePositions = require('./messagePositions'),
 	React = require('react'),
+	ReactDOM = require('react-dom'),
 	ValidationMixin = require('./mixin');
 
 var Select = React.createClass({
@@ -10,7 +11,7 @@ var Select = React.createClass({
 	mixins: [ValidationMixin],
 
 	getSelect: function() {
-		return this.getDOMNode().querySelector('select');
+		return ReactDOM.findDOMNode(this).querySelector('select');
 	},
 
 	getValue: function() {

@@ -1,6 +1,6 @@
 {
   "name": "react-vui-forms",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "React component for forms inlcuding validation",
   "main": "index.js",
   "scripts": {
@@ -36,36 +36,42 @@
   },
   "homepage": "https://github.com/Brightspace/react-valence-ui-forms",
   "peerDependencies": {
-    "react": "^0.13.3"
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   },
   "dependencies": {
     "bower": "^1.6.5",
     "classnames": "^2.1.3",
     "object-assign": "^4.0.1",
     "q": "^1.2.0",
-    "react-frau-events": "^0.1.0"
+    "react-frau-events": "^1.0.0"
   },
   "devDependencies": {
-    "babel-jest": "^5.3.0",
-    "browserify": "^11.0.1",
+    "babel-jest": "^16.0.0",
+    "babel-preset-react": "^6.16.0",
+    "browserify": "^13.1.0",
     "coveralls": "^2.11.4",
-    "csslint": "^0.10.0",
-    "eslint": "^1.2.0",
-    "eslint-config-brightspace": "^0.0.2",
+    "csslint": "^1.0.3",
+    "eslint": "^3.7.1",
+    "eslint-config-brightspace": "^0.2.4",
+    "eslint-plugin-react": "^6.3.0",
     "exorcist": "^0.4.0",
-    "jest-cli": "^0.5.8",
+    "jest-cli": "^16.0.0",
     "node-sass": "^3.3.3",
-    "rimraf": "^2.4.2",
-    "react": "^0.13.3",
+    "react": "^15.3.2",
+    "react-addons-test-utils": "^15.3.2",
     "react-tools": "^0.13.3",
+    "rimraf": "^2.4.2",
     "uglify-js": "^2.4.24"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "testDirectoryName": "test",
+    "testRegex": "/test/.*",
+    "automock": true,
     "unmockedModulePathPatterns": [
       "react"
     ],
+    "timers": "fake",
     "collectCoverageOnlyFrom": {
       "index.js": true,
       "src/bubble.js": true,

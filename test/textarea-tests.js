@@ -2,8 +2,9 @@
 
 jest.dontMock('../src/textarea');
 
-var React = require('react/addons'),
-	TestUtils = React.addons.TestUtils,
+var React = require('react'),
+	ReactDOM = require('react-dom'),
+	TestUtils = require('react-addons-test-utils'),
 	Validation = require('../index');
 
 describe('textarea', function() {
@@ -34,8 +35,9 @@ describe('textarea', function() {
 			var textarea = TestUtils.renderIntoDocument(
 				<Validation.Textarea defaultValue={"some content"} />
 			);
+			var textareaNode = ReactDOM.findDOMNode(textarea);
 
-			expect(textarea.getDOMNode().firstChild.textContent.replace('\n', '')).toBe('some content');
+			expect(textareaNode.firstChild.textContent.replace('\n', '')).toBe('some content');
 
 		});
 
@@ -44,8 +46,9 @@ describe('textarea', function() {
 			var textarea = TestUtils.renderIntoDocument(
 				<Validation.Textarea required />
 			);
+			var textareaNode = ReactDOM.findDOMNode(textarea);
 
-			expect(textarea.getDOMNode().firstChild.getAttribute('aria-required')).toBeTruthy();
+			expect(textareaNode.firstChild.getAttribute('aria-required')).toBeTruthy();
 
 		});
 
@@ -54,8 +57,9 @@ describe('textarea', function() {
 			var textarea = TestUtils.renderIntoDocument(
 				<Validation.Textarea />
 			);
+			var textareaNode = ReactDOM.findDOMNode(textarea);
 
-			expect(textarea.getDOMNode().firstChild.getAttribute('aria-required')).toBeNull();
+			expect(textareaNode.firstChild.getAttribute('aria-required')).toBeNull();
 
 		});
 
@@ -64,11 +68,12 @@ describe('textarea', function() {
 			var textarea = TestUtils.renderIntoDocument(
 				<Validation.Textarea validators={getSynchronousValidator(false,'a message')} />
 			);
+			var textareaNode = ReactDOM.findDOMNode(textarea);
 
 			return textarea.validate().then(function(result) {
 				expect(result.isValid).toBeFalsy();
 				expect(result.message).toBe('a message');
-				expect(textarea.getDOMNode().firstChild.getAttribute('aria-invalid')).toBeTruthy();
+				expect(textareaNode.firstChild.getAttribute('aria-invalid')).toBeTruthy();
 			});
 
 		});
@@ -78,10 +83,11 @@ describe('textarea', function() {
 			var textarea = TestUtils.renderIntoDocument(
 				<Validation.Textarea validators={getSynchronousValidator(true)} />
 			);
+			var textareaNode = ReactDOM.findDOMNode(textarea);
 
 			return textarea.validate().then(function(result) {
 				expect(result.isValid).toBeTruthy();
-				expect(textarea.getDOMNode().firstChild.getAttribute('aria-invalid')).toBeNull();
+				expect(textareaNode.firstChild.getAttribute('aria-invalid')).toBeNull();
 			});
 
 		});

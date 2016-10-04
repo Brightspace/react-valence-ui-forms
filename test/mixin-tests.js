@@ -3,8 +3,8 @@
 jest.dontMock('../src/mixin');
 jest.dontMock('q');
 
-var React = require('react/addons'),
-	TestUtils = React.addons.TestUtils,
+var React = require('react'),
+	TestUtils = require('react-addons-test-utils'),
 	Validation = require('../index'),
 	Q = require('q');
 
@@ -350,4 +350,3 @@ describe('mixin', function() {
 	});
 
 });
-
