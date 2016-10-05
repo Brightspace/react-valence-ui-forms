@@ -1,8 +1,8 @@
 'use strict';
 
-var objectAssign = require('object-assign'),
+var objectAssign = require('lodash/assign'),
+	objectOmit = require('lodash/omit'),
 	React = require('react'),
-	ReactDOM = require('react-dom'),
 	ValidationMixin = require('./mixin');
 
 var Input = React.createClass({
@@ -21,21 +21,21 @@ var Input = React.createClass({
 	},
 
 	getInput: function() {
-		return ReactDOM.findDOMNode(this).querySelector('input');
+		return this.refs.input;
 	},
 
 	getValue: function() {
-		if (!this.isMounted()) {
+		var input = this.getInput();
+		if (!input) {
 			return;
 		}
-		return this.getInput().value;
+
+		return input.value;
 	},
 
 	hasFocus: function() {
-		if (!this.isMounted()) {
-			return false;
-		}
-		return (document.activeElement === this.getInput());
+		var input = this.getInput();
+		return (input !== undefined && document.activeElement === this.getInput());
 	},
 
 	render: function() {
@@ -54,8 +54,17 @@ var Input = React.createClass({
 		return this.renderContainer(
 			React.DOM.input(
 				objectAssign(
-					{},
-					this.props,
+					{
+						key: 'input',
+						ref: 'input'
+					},
+					objectOmit(this.props, [
+						'ref',
+						'validators',
+						'validateLive',
+						'validateMessageAnchorId',
+						'validateMessagePosition'
+					]),
 					ariaProps, {
 						onFocus: this.handleFocus,
 						onBlur: this.handleBlur,

@@ -6,7 +6,8 @@ jest.dontMock('q');
 var React = require('react'),
 	TestUtils = require('react-addons-test-utils'),
 	Validation = require('../index'),
-	Q = require('q');
+	Q = require('q'),
+	objectOmit = require('lodash/omit');
 
 var Input = React.createClass({
 		mixins: [Validation.Mixin],
@@ -17,8 +18,15 @@ var Input = React.createClass({
 			return { isValid: this.defaultValidateIsValid };
 		},
 		render: function() {
+			var props = objectOmit(this.props, [
+				'validators',
+				'validateLive',
+				'validateMessageAnchorId',
+				'validateMessagePosition'
+			]);
+
 			return this.renderContainer(
-				<input {...this.props} key="input1" />
+				<input {...props} key="input1" />
 			);
 		},
 		validate: function() {

@@ -1,6 +1,6 @@
 {
   "name": "react-vui-forms",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "React component for forms inlcuding validation",
   "main": "index.js",
   "scripts": {
@@ -42,7 +42,7 @@
   "dependencies": {
     "bower": "^1.6.5",
     "classnames": "^2.1.3",
-    "object-assign": "^4.0.1",
+    "lodash": "^4.16.3",
     "q": "^1.2.0",
     "react-frau-events": "^1.0.0"
   },
@@ -58,7 +58,6 @@
     "exorcist": "^0.4.0",
     "jest-cli": "^16.0.0",
     "node-sass": "^3.3.3",
-    "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
     "react-tools": "^0.13.3",
     "rimraf": "^2.4.2",
