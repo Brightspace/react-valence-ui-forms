@@ -1,6 +1,6 @@
 'use strict';
 
-var objectAssign = require('object-assign'),
+var objectAssign = require('lodash/assign'),
 	React = require('react'),
 	ValidationMixin = require('./mixin');
 
