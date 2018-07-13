@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-- 4.1
+  - 4.1
 after_success:
-- npm run report-coverage
+  - npm run report-coverage
 deploy:
-  provider: npm
-  email: d2ltravisdeploy@d2l.com
-  api_key:
-    secure: bg/WNfth6/32ji/GaBpr9IxrmgZGZckhnUIlMV9mOPLWayiKncy+8tKS+hCOyFNAvvZuKBF4dnyIa48ZOp+9XwRR0eoXK/DH6iysjyrPz9NJ4tDfmhY6mZSVJgYL4h8rmIzT+e52ib9ZFLL4Ka+ly25f29ThzDUVbeMF2Zm2o54=
+  provider: script
+  script: echo "npm credentials were revoked on 2018-07-12. We regenerated many
+    credentials, but this repository had no changes in at least 18 months and
+    was skipped. Reconfigure npm deployments. -omsmith"; exit 1
   on:
     tags: true
     all_branches: true
